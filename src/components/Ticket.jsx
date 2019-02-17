@@ -9,7 +9,7 @@ function Ticket(props) {
             background-color: red;
           }
         `}</style>
-      <h3>{props.location} - {props.names}</h3>
+      <h3 >{props.location} - {props.names}</h3>
       <p><em>{props.issue}</em></p>
       <hr />
     </div>
