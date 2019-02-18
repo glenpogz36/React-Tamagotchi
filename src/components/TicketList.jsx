@@ -1,5 +1,5 @@
-import React from 'react'
-import Ticket from './Ticket'
+import React from 'react';
+import Ticket from './Ticket';
 
 let masterTicketList = [
   {
@@ -19,7 +19,7 @@ let masterTicketList = [
     issue: 'Fox image not displaying on page, can only see duck?'
 
   }
-]
+];
 
 function TicketList() {
   return (
@@ -34,7 +34,7 @@ function TicketList() {
        
         )}
     </div>
-  )
+  );
 }
 
-export default TicketList
+export default TicketList;
