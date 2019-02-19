@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
+import { v4 } from 'uuid';
+import  PropTypes from 'prop-types';
 
-function NewTicketForm() {
+function NewTicketForm(props) {
   let _names = null;
   let _location = null;
   let _issue = null;
 
   function handleNewTicketFormSubmission(event) {
     event.preventDefault();
-    console.log(_names.value);
-    console.log(_location.value);
-    console.log(_issue.value);
-    _names.value = "";
-    _location.value = "";
-    _issue.value = "";
+    props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value, id: v4()});
+    _names.value = '';
+    _location.value = '';
+    _issue.value = '';
   }
 
   return (
@@ -46,5 +46,10 @@ function NewTicketForm() {
     </div>
   );
 }
+
+
+NewTicketForm.propTypes = {
+  onNewTicketCreation: PropTypes.func
+};
 
 export default NewTicketForm;
