@@ -1,63 +1,77 @@
+
 import React from 'react';
-import Header from './Header';
-import TicketList from './TicketList';
-import { Switch, Route } from 'react-router-dom';
-import NewTicketControl from './NewTicketControl';
-import Error404 from './Error404';
-import Moment from 'moment';
+import { Switch, Route, HashRouter } from 'react-router-dom';
+import TamagotchiList from './TamagotchiList';
+import { v4 } from 'uuid';
+import Mimitchi from '../assets/img/Memetchi.png';
+import Mametchi from '../assets/img/Mametchi.png';
+
+
+
 
 class App extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      masterTicketList: []
-    };
-    this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
-  }
+      masterTamagotchi: [
+        {
+          name: "Memetchi",
+          image: Memetchi,
+          play: 50,
+          sleep: 50,
+          hygene: 50,
+          happy: 50,
+          feed: 50,
+          key: v4()
+        },
+        {
+          name: "Mametchi",
+          image: Mametchi,
+          play: 50,
+          sleep: 50,
+          hygene: 50,
+          happy: 50,
+          feed: 50,
+          key: v4()
+        }
 
-  componentWillUnmount(){
-    console.log('componentWillUnmount');
-    clearInterval(this.waitTimeUpdateTimer);
-  }
+      ]
+    }
+    // masterActivity: [
+    //   {
+    //     name: "play",
+    //     score: 50,
+    //     key: v4()
+    //   },
+    //   {
+    //     name: "feed",
+    //     score: 50,
+    //     key: v4()
+    //   },
+    //   {
+    //     name: "happy",
+    //     score: 50,
+    //     key: v4()
+    //   }
+    // ]
 
-  componentDidMount(){
-    console.log('componentDidMount');
-    this.waitTimeUpdateTimer = setInterval(() =>
-      this.updateTicketElapsedWaitTime(), 60000
-      );
   }
-
-  updateTicketElapsedWaitTime(){
-    console.log("check");
-    let newMasterTicketList = this.state.masterTicketList.slice();
-    newMasterTicketList.forEach((ticket) => ticket.formattedWaitTme = (ticket.timeOpen).fromNow(true)
-    );
-    this.setState({masterTicketList: newMasterTicketList})
-  }
-
-  handleAddingNewTicketToList(newTicket){
-    var newMasterTicketList = this.state.masterTicketList.slice();
-    newTicket.formattedWaitTime = (newTicket.timeOpen).fromNow(true);
-    newMasterTicketList.push(newTicket);
-    this.setState({masterTicketList: newMasterTicketList});
-  }
-  
   render() {
     return (
-      <div>
-        <Header />
-        <Switch>
-          <Route exact path='/' render={() => <TicketList ticketList={this.state.masterTicketList} />} />
-          <Route path='/newticket' render={() => <NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />} />
-          <Route component={Error404} />
-        </Switch>
-
+      <div className="App">
+        <header className="App-header">
+          <HashRouter>
+            <Switch>
+              {/* <Home /> */}
+              <Route exact path='/' render={() => <TamagotchiList tamagotchiList={this.state.masterTamagotchi} />} />
+            </Switch>
+          </HashRouter>
+        </header>
       </div>
+
     );
   }
 }
 
-  
 
-export default App;
+export default App;                                                                                                              
