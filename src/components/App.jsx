@@ -3,8 +3,8 @@ import React from 'react';
 import { Switch, Route, HashRouter } from 'react-router-dom';
 import TamagotchiList from './TamagotchiList';
 import { v4 } from 'uuid';
-import Mimitchi from '../assets/img/Memetchi.png';
-import Mametchi from '../assets/img/Mametchi.png';
+import Egg from '../assets/img/egg.gif';
+
 
 
 
@@ -15,47 +15,19 @@ class App extends React.Component {
     this.state = {
       masterTamagotchi: [
         {
-          name: "Memetchi",
-          image: Memetchi,
-          play: 50,
-          sleep: 50,
-          hygene: 50,
-          happy: 50,
-          feed: 50,
-          key: v4()
+          name: "Squirtle",
+          image: Egg,
         },
-        {
-          name: "Mametchi",
-          image: Mametchi,
-          play: 50,
-          sleep: 50,
-          hygene: 50,
-          happy: 50,
-          feed: 50,
-          key: v4()
-        }
 
       ]
     }
-    // masterActivity: [
-    //   {
-    //     name: "play",
-    //     score: 50,
-    //     key: v4()
-    //   },
-    //   {
-    //     name: "feed",
-    //     score: 50,
-    //     key: v4()
-    //   },
-    //   {
-    //     name: "happy",
-    //     score: 50,
-    //     key: v4()
-    //   }
-    // ]
 
+    this.buttonClicked = this.buttonClicked.bind(this);
   }
+  buttonClicked(event) {
+    this.setState({ play: this.state.play + 1 });
+  }
+
   render() {
     return (
       <div className="App">
@@ -64,8 +36,11 @@ class App extends React.Component {
             <Switch>
               {/* <Home /> */}
               <Route exact path='/' render={() => <TamagotchiList tamagotchiList={this.state.masterTamagotchi} />} />
+              {this.state.play}
+              <button onClick={this.buttonClicked}>⬆ </button>
             </Switch>
           </HashRouter>
+
         </header>
       </div>
 

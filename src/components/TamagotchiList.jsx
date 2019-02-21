@@ -3,6 +3,7 @@ import Mytamagotchi from './Mytamagotchi';
 import PropTypes from 'prop-types';
 
 
+
 function TamogotchiList(props) {
     return (
         <div>
@@ -15,6 +16,7 @@ function TamogotchiList(props) {
                     play={tamagotchi.play}
                     feed={tamagotchi.feed}
                     key={tamagotchi.id} />
+           
             )}
         </div>
     );
